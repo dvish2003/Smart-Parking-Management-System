@@ -2,12 +2,14 @@ package lk.ijse.cloudeconfig;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
 @SpringBootApplication
-public class CloudeConfigApplication {
+@EnableConfigServer
+public class CloudConfigApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CloudeConfigApplication.class, args);
+		SpringApplication.run(CloudConfigApplication.class, args);
 	}
 
 }
