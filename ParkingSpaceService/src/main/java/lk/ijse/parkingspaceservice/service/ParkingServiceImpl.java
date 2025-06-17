@@ -81,14 +81,17 @@ public int saveParkingPlace(ParkingDTO parkingDTO){
     }
 
 @Override
-public int ReservationUpdateParkingPlace(String Location, int LocationCode){
+public int ReservationUpdateParkingPlace(String Location){
         System.out.println("Booking location "+Location);
         try{
-            if(parkingRepo.existsParkingByLocation(Location.toLowerCase()) || parkingRepo.existsParkingByLocationCode(LocationCode)){
+            if(parkingRepo.existsParkingByLocation(Location.toLowerCase())){
                 Parking parking = parkingRepo.findByLocation(Location.toLowerCase());
-                parking.setAvailable(false);
-                parkingRepo.save(parking);
-                return VarList.Created;
+                if(parking.isAvailable()){
+                    parking.setAvailable(false);
+                    parkingRepo.save(parking);
+                    return VarList.Created;
+                }
+              return VarList.Not_Found;
             }
             return VarList.Not_Found;
         }catch (Exception e){

@@ -9,7 +9,7 @@ public interface ParkingService {
 
     int updateParkingPlace(ParkingDTO parkingDTO);
 
-    int ReservationUpdateParkingPlace(String Location, int LocationCode);
+    int ReservationUpdateParkingPlace(String Location);
 
     int deleteParkingPlace(String location, String email, int LocationCode);
 

@@ -5,20 +5,20 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: user-service
-          uri: lb://user-service
+        - id: UserService
+          uri: http://localhost:8081/api/v1/users
           predicates:
             - Path=/api/v1/users/**
-        - id: parking-service
-          uri: lb://parking-service
-          predicates:
-            - Path=/api/v1/parking/**
-        - id: vehicle-service
-          uri: lb://vehicle-service
+        - id: VehicleService
+          uri: http://localhost:8082/api/v1/vehicle
           predicates:
             - Path=/api/v1/vehicles/**
-        - id: payment-service
-          uri: lb://vehicle-service
+        - id: ParkingService
+          uri: http://localhost:8083/api/v1/parking
+          predicates:
+            - Path=/api/v1/parking/**
+        - id: PaymentService
+          uri: http://localhost:8084/api/v1/payment
           predicates:
             - Path=/api/v1/payments/**
 
