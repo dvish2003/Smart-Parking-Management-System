@@ -95,7 +95,7 @@ public class UserController {
 
             if (userDTO == null) {
                 return ResponseEntity.ok(
-                        new ResponseDTO(VarList.OK, "not found a member", null)
+                        new ResponseDTO(VarList.Not_Found, "not found a member", null)
                 );
             } else {
                 return ResponseEntity.ok(

@@ -1,6 +1,6 @@
-package lk.ijse.parkingspaceservice.repo;
+package lk.ijse.vehiceservice.repo;
 
-import lk.ijse.parkingspaceservice.entity.User;
+import lk.ijse.vehiceservice.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @EnableJpaRepositories
 @Repository
-public interface UserRepository extends JpaRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<lk.ijse.vehiceservice.entity.User, UUID> {
 
     User findByEmail(String email);
 

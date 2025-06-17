@@ -11,15 +11,26 @@
         <module name="Api-Gateway" />
         <module name="CloudeConfig" />
       </profile>
-      <profile name="Annotation profile for UserService" enabled="true">
+      <profile name="Annotation profile for ReservationService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="ReservationService" />
+        <module name="UserService" />
+        <module name="PaymentService" />
+        <module name="ParkingSpaceService" />
+      </profile>
+      <profile name="Annotation profile for VehiceService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
-        <module name="UserService" />
-        <module name="ParkingSpaceService" />
         <module name="VehiceService" />
       </profile>
     </annotationProcessing>
@@ -34,6 +45,8 @@
       <module name="CloudeConfig" options="-parameters" />
       <module name="Eureka-Server" options="-parameters" />
       <module name="ParkingSpaceService" options="-parameters" />
+      <module name="PaymentService" options="-parameters" />
+      <module name="ReservationService" options="-parameters" />
       <module name="UserService" options="-parameters" />
       <module name="VehiceService" options="-parameters" />
     </option>

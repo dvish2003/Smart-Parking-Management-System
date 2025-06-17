@@ -1,4 +1,4 @@
-package lk.ijse.parkingspaceservice.entity;
+package lk.ijse.vehiceservice.entity;
 
 
 import jakarta.persistence.*;
@@ -10,16 +10,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @Entity
-public class Parking {
+public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @Column(unique = true, nullable = false)
+    private String licensePlate;
     @Column(nullable = false)
-    private String location;
-    @Column(nullable = false)
-    private String City;
-    private boolean Available;
+    private String model;
     @Column(nullable = false)
     private String email;
-
 }
