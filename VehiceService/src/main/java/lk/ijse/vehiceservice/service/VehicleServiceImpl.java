@@ -29,11 +29,13 @@ public class VehicleServiceImpl implements VehicleService {
     public int saveVehicle(VehicleDTO vehicle) {
         System.out.println("Inside VehicleServiceImpl::saveVehicleDTO :" + vehicle);
 try{
-if(userRepo.existsUserByEmail(vehicle.getEmail())) {
+if(userRepo.existsUserByEmail(vehicle.getEmail().toLowerCase())) {
     if(vehicleRepo.existsVehicleByLicensePlate(vehicle.getLicensePlate())){
         return VarList.All_Ready_Added;
     }
     Vehicle vehicleEntity = modelMapper.map(vehicle, Vehicle.class);
+    String email = vehicle.getEmail().toLowerCase();
+    vehicleEntity.setEmail(email);
     System.out.println("VehicleServiceImpl::saveVehicleEntity :" + vehicleEntity);
     Vehicle vehicleEntity1 = vehicleRepo.save(vehicleEntity);
     System.out.println("Vehicle save successful");
@@ -50,13 +52,13 @@ return VarList.Not_Found;
     public int updateVehicle(VehicleDTO vehicleDTO) {
         System.out.println("Inside VehicleServiceImpl::updateVehicleDTO :" + vehicleDTO);
        try{
-           if(userRepo.existsUserByEmail(vehicleDTO.getEmail())) {
+           if(userRepo.existsUserByEmail(vehicleDTO.getEmail().toLowerCase())) {
                if(vehicleRepo.existsVehicleByLicensePlate(vehicleDTO.getLicensePlate())){
                    Vehicle vehicleEntity = vehicleRepo.findByLicensePlate(vehicleDTO.getLicensePlate());
                    if(vehicleEntity != null && vehicleDTO.getEmail().equals(vehicleEntity.getEmail())){
                        vehicleEntity.setLicensePlate(vehicleDTO.getLicensePlate());
                        vehicleEntity.setModel(vehicleDTO.getModel());
-                       vehicleEntity.setEmail(vehicleDTO.getEmail());
+                       vehicleEntity.setEmail(vehicleDTO.getEmail().toLowerCase());
                        Vehicle vehicleEntity1 = vehicleRepo.save(vehicleEntity);
                        return VarList.Created;
                    }
@@ -74,7 +76,7 @@ return VarList.Not_Found;
     public int deleteVehicle(VehicleDTO vehicleDTO) {
         System.out.println("Inside VehicleServiceImpl::deleteVehicle :" + vehicleDTO.getLicensePlate());
        try{
-           if(userRepo.existsUserByEmail(vehicleDTO.getEmail())) {
+           if(userRepo.existsUserByEmail(vehicleDTO.getEmail().toLowerCase())) {
                if(vehicleRepo.existsVehicleByLicensePlate(vehicleDTO.getLicensePlate())){
                    Vehicle vehicleEntity = vehicleRepo.findByLicensePlate(vehicleDTO.getLicensePlate());
                    vehicleRepo.delete(vehicleEntity);

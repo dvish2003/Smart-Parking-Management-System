@@ -50,7 +50,7 @@ public class VehicleController {
         }
     }
 
-    @PostMapping(value = "/updateUser")
+    @PutMapping(value = "/updateUser")
     public ResponseEntity<ResponseDTO> updateVehicle(@RequestBody VehicleDTO vehicleDTO) {
         System.out.println("Update vehicle : ..." + vehicleDTO);
         try{
@@ -93,7 +93,7 @@ public class VehicleController {
 
                 case VarList.Not_Found -> {
                     System.out.println("Not found vehicle : ...");
-                    ResponseDTO response = new ResponseDTO(VarList.All_Ready_Added, "Not found Vehicle", null);
+                    ResponseDTO response = new ResponseDTO(VarList.Not_Found, "Not found Vehicle", null);
                     return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
                 }
 

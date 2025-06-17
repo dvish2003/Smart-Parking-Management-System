@@ -13,7 +13,10 @@ import java.util.UUID;
 public class ParkingDTO {
     private UUID id;
     private String location;
+    private int LocationCode;
     private String City;
     private boolean Available;
     private String email;
+    private int payAmount;
+
 }
