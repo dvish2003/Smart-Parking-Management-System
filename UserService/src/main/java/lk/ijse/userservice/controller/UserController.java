@@ -3,6 +3,7 @@ package lk.ijse.userservice.controller;
 
 import lk.ijse.userservice.dto.ResponseDTO;
 import lk.ijse.userservice.dto.UserDTO;
+import lk.ijse.userservice.dto.UserDTO2;
 import lk.ijse.userservice.entity.User;
 import lk.ijse.userservice.service.UserService;
 import lk.ijse.userservice.util.VarList;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(path = "/api/v1/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -54,7 +55,7 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/updateUser")
+    @PutMapping(value = "/updateUser")
     public ResponseEntity<ResponseDTO>  UpdateUser(@RequestBody UserDTO user) {
         System.out.println("User Data Come to Controller :" + user);
 
@@ -88,7 +89,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/getUserInfo")
-    public ResponseEntity<ResponseDTO> getMemberByUserId(@RequestBody UserDTO user){
+    public ResponseEntity<ResponseDTO> getMemberByUserId(@RequestBody UserDTO2 user){
             System.out.println("Request Accepted get User");
 
             UserDTO userDTO = userService.getUserByEmail(user.getEmail());
@@ -106,16 +107,16 @@ public class UserController {
 
 
     @DeleteMapping(value = "/deleteUser")
-    public ResponseEntity<ResponseDTO>  DeleteUser(@RequestBody UserDTO user) {
+    public ResponseEntity<ResponseDTO>  DeleteUser(@RequestBody UserDTO2 user) {
                 System.out.println("User Data Come to Controller for delete :" + user);
 
                 try {
 
-                    int res = userService.deleteUser(user.getEmail());
+                    int res = userService.deleteUser(user.getEmail(),user.getPassword());
                     switch (res) {
                         case VarList.OK -> {
                             System.out.println("Delete User Success");
-                            return ResponseEntity.ok(new ResponseDTO(VarList.OK, "User saved successfully", user));
+                            return ResponseEntity.ok(new ResponseDTO(VarList.OK, "User Delete successfully", user));
                         }
                         case VarList.Not_Found -> {
                             System.out.println("User Not Found");

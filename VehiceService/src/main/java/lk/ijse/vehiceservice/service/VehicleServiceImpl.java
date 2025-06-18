@@ -36,7 +36,7 @@ if(userRepo.existsUserByEmail(vehicle.getEmail().toLowerCase())) {
     Vehicle vehicleEntity = modelMapper.map(vehicle, Vehicle.class);
     String email = vehicle.getEmail().toLowerCase();
     vehicleEntity.setEmail(email);
-    System.out.println("VehicleServiceImpl::saveVehicleEntity :" + vehicleEntity);
+    System.out.println("VehicleServiceImpl:saveVehicleEntity :" + vehicleEntity);
     Vehicle vehicleEntity1 = vehicleRepo.save(vehicleEntity);
     System.out.println("Vehicle save successful");
     return VarList.Created;
@@ -100,7 +100,7 @@ return VarList.Not_Found;
 
     @Override
     public VehicleDTO getVehicleByNumberPlate(String licenPlate) {
-        System.out.println("Get vehicle use by number plate : ...");
+        System.out.println("Get vehicle use by number plate : ..."+licenPlate);
         if(vehicleRepo.existsVehicleByLicensePlate(licenPlate)){
             Vehicle vehicle = vehicleRepo.findByLicensePlate(licenPlate);
             return modelMapper.map(vehicle, VehicleDTO.class);

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>lk.ijse</groupId>
-    <artifactId>ParkingSpaceService</artifactId>
+    <artifactId>parking-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ParkingSpaceService</name>
-    <description>ParkingSpaceService</description>
+    <name>parking-service</name>
+    <description>parking-service</description>
     <url/>
     <licenses>
         <license/>

@@ -28,13 +28,18 @@ public class VehicleController {
             switch (res){
                 case VarList.All_Ready_Added -> {
                     System.out.println("All ready Added vehicle : ...");
-                    ResponseDTO response = new ResponseDTO(VarList.All_Ready_Added, "User Already Exists", null);
+                    ResponseDTO response = new ResponseDTO(VarList.All_Ready_Added, "Vehicle Already Exists", null);
                     return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
 
                 }
                 case VarList.Created -> {
                     System.out.println("Create Vehicle Success");
                     return  ResponseEntity.ok((new ResponseDTO(VarList.Created, "Vehicle created successfully", vehicleDTO)));
+                }
+                case VarList.Not_Found -> {
+                    System.out.println("Not found User : ...");
+                    ResponseDTO response = new ResponseDTO(VarList.Not_Found, "Not found User", null);
+                    return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
                 }
                 default -> {
                     System.out.println("Internal server error");
@@ -50,7 +55,7 @@ public class VehicleController {
         }
     }
 
-    @PutMapping(value = "/updateUser")
+    @PutMapping(value = "/updateVehicle")
     public ResponseEntity<ResponseDTO> updateVehicle(@RequestBody VehicleDTO vehicleDTO) {
         System.out.println("Update vehicle : ..." + vehicleDTO);
         try{
@@ -58,7 +63,7 @@ public class VehicleController {
             switch (res){
                 case VarList.Not_Found -> {
                     System.out.println("Not found vehicle : ...");
-                    ResponseDTO response = new ResponseDTO(VarList.All_Ready_Added, "Not found Vehicle", null);
+                    ResponseDTO response = new ResponseDTO(VarList.All_Ready_Added, "Not found Details", null);
                     return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
 
                 }
@@ -116,8 +121,8 @@ public class VehicleController {
        try{
            VehicleDTO vehicleDTO1 = vehicleService.getVehicleByNumberPlate(vehicleDTO.getLicensePlate());
 
-           if(vehicleDTO1 != null){
-               return ResponseEntity.ok(new ResponseDTO(VarList.Not_Found,"Not found vehicle",null));
+           if(vehicleDTO1 == null){
+               return ResponseEntity.ofNullable(new ResponseDTO(VarList.Not_Found,"Not found vehicle",null));
            }else{
                return ResponseEntity.ok(new ResponseDTO(VarList.OK,"Vehicle details", vehicleDTO1));
            }}catch (Exception e){
@@ -125,7 +130,7 @@ public class VehicleController {
        }
     }
 
-    @GetMapping
+    @GetMapping(value = "/getAllVehicle")
     public List<VehicleDTO> getAllVehicles() {
         System.out.println("Get all vehicles");
         List<VehicleDTO> vehicleDTOS = vehicleService.getAllVehicle();

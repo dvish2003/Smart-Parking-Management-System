@@ -50,7 +50,7 @@ public class ParkingController {
 
     @PutMapping(value = "/updateParking")
     public ResponseEntity<ResponseDTO> updateParkingPlace(@RequestBody ParkingDTO parkingDTO){
-        System.out.println("updateParkingPlace");
+        System.out.println("updateParkingPlace........." + parkingDTO);
         try {
             int res = parkingService.updateParkingPlace(parkingDTO);
             switch(res){
@@ -79,7 +79,7 @@ public class ParkingController {
     public ResponseEntity<ResponseDTO> deleteParkingPlace(@RequestBody ParkingDTO parkingDTO){
         System.out.println("deleteParkingPlace");
        try{
-           int res = parkingService.deleteParkingPlace(parkingDTO.getLocation(),parkingDTO.getEmail(),parkingDTO.getLocationCode());
+           int res = parkingService.deleteParkingPlace(parkingDTO.getId(),parkingDTO.getEmail(),parkingDTO.getLocationCode());
 
            switch (res){
                case VarList.OK -> {
@@ -114,7 +114,7 @@ public class ParkingController {
     }
 
     @GetMapping(value = "/getAll")
-    public List<ParkingDTO> AllGetPlaces(@RequestBody ParkingDTO parkingDTO){
+    public List<ParkingDTO> AllGetPlaces(){
         System.out.println("getAllByCity");
         List<ParkingDTO> parkingDTOS = parkingService.getAllParkingPlace();
         return parkingDTOS;

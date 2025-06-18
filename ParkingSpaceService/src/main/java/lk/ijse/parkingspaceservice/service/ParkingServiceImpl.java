@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -60,11 +61,11 @@ public int saveParkingPlace(ParkingDTO parkingDTO){
 
         @Override
         public int updateParkingPlace(ParkingDTO parkingDTO){
-        System.out.println("updateParkingPlace"+parkingDTO);
+        System.out.println("updateParkingPlace  "+parkingDTO);
         try {
             if(userRepository.existsUserByEmail(parkingDTO.getEmail().toLowerCase())){
-                if(parkingRepo.existsParkingByLocation(parkingDTO.getLocation().toLowerCase()) || parkingRepo.existsParkingByLocationCode(parkingDTO.getLocationCode())){
-                    Parking parking = parkingRepo.findByLocation(parkingDTO.getLocation().toLowerCase());
+                if(parkingRepo.existsParkingById(parkingDTO.getId())){
+                    Parking parking = parkingRepo.findById(parkingDTO.getId()).get();
                     parking.setAvailable(true);
                     parking.setPayAmount(parkingDTO.getPayAmount());
                     parking.setEmail(parkingDTO.getEmail().toLowerCase());
@@ -100,12 +101,13 @@ public int ReservationUpdateParkingPlace(String Location){
     }
 
     @Override
-    public int deleteParkingPlace(String location, String email, int LocationCode){
+    public int deleteParkingPlace(UUID id, String email, int LocationCode){
+
         System.out.println("deleteParkingPlace");
         try{
             if(userRepository.existsUserByEmail(email.toLowerCase())){
-                if(parkingRepo.existsParkingByLocation(location.toLowerCase()) || parkingRepo.existsParkingByLocationCode(LocationCode)){
-                    Parking parking = parkingRepo.findByLocation(location.toLowerCase());
+                if(parkingRepo.existsById(id) || parkingRepo.existsParkingByLocationCode(LocationCode)){
+                    Parking parking = parkingRepo.findById(id).get();
                     parkingRepo.delete(parking);
                     return VarList.OK;
                 }
@@ -123,7 +125,7 @@ public int ReservationUpdateParkingPlace(String Location){
             List<Parking> parkingList = parkingRepo.findAllByCity(city);
             List<Parking> parkingList2 = new ArrayList<>();
             for(Parking parking:parkingList){
-                if(!parking.isAvailable()){
+                if(parking.isAvailable()){
                     parkingList2.add(parking);
                 }
             }

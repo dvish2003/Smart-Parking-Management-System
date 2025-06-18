@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>lk.ijse</groupId>
-    <artifactId>PaymentService</artifactId>
+    <artifactId>payment-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PaymentService</name>
-    <description>PaymentService</description>
+    <name>payment-service</name>
+    <description>payment-service</description>
     <url/>
     <licenses>
         <license/>
@@ -65,7 +65,7 @@
         </dependency>
         <dependency>
             <groupId>lk.ijse</groupId>
-            <artifactId>ParkingSpaceService</artifactId>
+            <artifactId>parking-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
