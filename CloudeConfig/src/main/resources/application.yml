@@ -10,8 +10,6 @@ spring:
         git:
           uri: https://github.com/dvish2003/spms_config.git
           default-label: main
-          username: dvish2003
-
 
 
 eureka:
