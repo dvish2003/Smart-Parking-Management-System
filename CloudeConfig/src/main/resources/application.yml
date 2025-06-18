@@ -1,15 +1,7 @@
 server:
   port: 8888
 
-spring:
-  application:
-    name: config-server
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/dvish2003/spms_config.git
-          default-label: main
+
 
 
 eureka:
