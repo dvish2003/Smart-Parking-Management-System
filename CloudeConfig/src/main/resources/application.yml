@@ -1,8 +1,20 @@
 server:
   port: 8888
+
 spring:
+  application:
+    name: config-server
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/dvish2003/spms_config_repo.git
+          uri: https://github.com/dvish2003/spms_config.git
+          default-label: main
+          username: dvish2003
+          password: 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
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
