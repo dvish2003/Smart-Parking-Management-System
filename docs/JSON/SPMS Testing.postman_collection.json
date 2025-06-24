@@ -59,7 +59,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"name\":\"Vish Mee\",\n\"email\":\"vishan.chathuranga10@gmail.com\",\n\"password\":\"Vishan2003###\",\n\"role\":\"OWNER\"\n}"
+							"raw": "{\n\"name\":\"kim jon\",\n\"email\":\"vishan.chathuranga10@gmail.com\",\n\"password\":\"Vishan2003###\",\n\"role\":\"OWNER\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/v1/users/updateUser",
